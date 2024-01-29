@@ -13,7 +13,11 @@ use App\Http\Requests\UpdateTaskRequest;
 class TaskController extends Controller
 {
     public function index(){
-        $tasks = QueryBuilder::for(Task::class)->allowedFilters('is_done')->paginate();
+        $tasks = QueryBuilder::for(Task::class)
+        ->allowedFilters('is_done')
+        ->defaultSort('-created_at')
+        ->allowedSorts(['title','is_done', 'created_at'])
+        ->paginate();
         return new TaskCollection($tasks);
     }
 
