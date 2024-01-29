@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 class TaskController extends Controller
 {
     public function index(){
-        return new TaskCollection(Task::all());
+        return new TaskCollection(Task::paginate());
     }
 
     public function show(Request $request, Task $task){
