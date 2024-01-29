@@ -14,8 +14,6 @@ class TaskCollection extends ResourceCollection
      */
     public function toArray(Request $request): array
     {
-        $data = parent::toArray($request);
-        $data['status'] = $this->is_done ? 'finished' : 'open';
-        return $data;
+        return parent::toArray($request);
     }
 }
