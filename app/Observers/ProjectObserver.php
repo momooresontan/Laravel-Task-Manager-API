@@ -11,7 +11,7 @@ class ProjectObserver
      */
     public function created(Project $project): void
     {
-        //
+        $project->members()->attach([$project->user_id]);
     }
 
     /**
