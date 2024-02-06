@@ -33,10 +33,10 @@ class Project extends Model
         return $this->belongsToMany(User::class, Member::class);
     }
 
-    // protected static function booted()
-    // {
-    //     static::addGlobalScope('user', function(Builder $builder){
-    //         $builder->where('user_id', Auth::id());
-    //     });
-    // }
+    protected static function booted()
+    {
+        static::addGlobalScope('user', function(Builder $builder){
+            $builder->where('user_id', Auth::id());
+        });
+    }
 }
