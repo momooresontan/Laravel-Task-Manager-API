@@ -13,6 +13,10 @@ use App\Http\Requests\UpdateTaskRequest;
 
 class TaskController extends Controller
 {
+    public function __construct(){
+        $this->authorizeResource(Task::class, 'task');
+    }
+
     public function index(){
         $tasks = QueryBuilder::for(Task::class)
         ->allowedFilters('is_done')
