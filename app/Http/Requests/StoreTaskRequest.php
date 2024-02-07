@@ -25,9 +25,10 @@ class StoreTaskRequest extends FormRequest
     {
         return [
             'title' => 'required|max:255',
-            Rule::exists('projects', 'id')->where(function($query){
-                $query->where('user_id', Auth::id());
-            })
+            'project_id' => [
+                'nullable',
+                Rule::in(Auth::user()->memberships->pluck('id')),
+            ],
         ];
     }
 }
