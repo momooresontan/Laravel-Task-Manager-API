@@ -21,7 +21,13 @@ class TaskPolicy
      */
     public function view(User $user, Task $task): bool
     {
-        //
+        if($user->id === $task->user_id){
+            return true;
+        }
+        if($task->project && $user->memberships->contains($task->project)){
+            return true;
+        }
+        return false;
     }
 
     /**
